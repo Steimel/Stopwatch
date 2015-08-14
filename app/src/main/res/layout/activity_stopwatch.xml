@@ -15,9 +15,15 @@
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnStartStop"
         android:text="@string/start"
-        android:onClick="click"
+        android:onClick="startStopClick"
+        />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:text="@string/clear"
+        android:onClick="clearClick"
         />
 
 </GridLayout>

@@ -14,15 +14,17 @@ public class Stopwatch extends ActionBarActivity {
     private final int STATE_STOPPED = 0;
     private final int STATE_RUNNING = 1;
     private int state;
+    private long elapsedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch);
+        elapsedTime = 0;
         state = STATE_STOPPED;
     }
 
-    public void click(View view) {
+    public void startStopClick(View view) {
         switch(state) {
             case STATE_STOPPED:
                 startTime();
@@ -33,16 +35,22 @@ public class Stopwatch extends ActionBarActivity {
         }
     }
 
-    private void startTime() {
+    public void clearClick(View view) {
+        elapsedTime = 0;
         getChron().setBase(SystemClock.elapsedRealtime());
+    }
+
+    private void startTime() {
+        getChron().setBase(SystemClock.elapsedRealtime() - elapsedTime);
         getChron().start();
-        getButton().setText(R.string.stop);
+        getStartStopButton().setText(R.string.stop);
         state = STATE_RUNNING;
     }
 
     private void stopTime() {
         getChron().stop();
-        getButton().setText(R.string.start);
+        elapsedTime = SystemClock.elapsedRealtime() - getChron().getBase();
+        getStartStopButton().setText(R.string.start);
         state = STATE_STOPPED;
     }
 
@@ -50,8 +58,12 @@ public class Stopwatch extends ActionBarActivity {
         return (Chronometer) findViewById(R.id.chron);
     }
 
-    private Button getButton() {
-        return (Button) findViewById(R.id.button);
+    private Button getStartStopButton() {
+        return (Button) findViewById(R.id.btnStartStop);
+    }
+
+    private Button getClearButton() {
+        return (Button) findViewById(R.id.btnClear);
     }
 
     @Override
