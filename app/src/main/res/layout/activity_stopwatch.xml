@@ -1,29 +1,37 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:rowCount="2"
-    android:columnCount="1"
+    android:orientation="vertical"
     tools:context=".Stopwatch"
     >
 
     <Chronometer
         android:id="@+id/chron"
         android:layout_width="wrap_content"
-        android:textSize="@dimen/abc_text_size_title_material"
-        android:layout_marginBottom="@dimen/abc_text_size_title_material"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/clock_text_size"
+        android:layout_marginBottom="@dimen/clock_bottom_margin"
+        android:layout_gravity="center_horizontal"
         />
 
     <Button
         android:id="@+id/btnStartStop"
         android:text="@string/start"
         android:onClick="startStopClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_margin"
+        android:textSize="@dimen/start_stop_text_size"
         />
 
     <Button
         android:id="@+id/btnClear"
         android:text="@string/clear"
         android:onClick="clearClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/clear_text_size"
         />
 
-</GridLayout>
+</LinearLayout>
